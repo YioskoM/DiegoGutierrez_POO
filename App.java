@@ -29,6 +29,8 @@ public class App {
         
         double CantidaHora = 0;
 
+        double SumaPrecedero = 0;
+
         int Modo = TipoModo.nextInt();
 
         switch(Modo){
@@ -179,6 +181,10 @@ public class App {
                 if(TablaIngresos[i][3] <= 2) {
                     CantidaHora+=1;
                 }
+
+                if (TablaIngresos[i][1] == 1){
+                    SumaPrecedero += TablaIngresos[i][5];
+                }
                                  
             }
 
@@ -197,9 +203,10 @@ public class App {
             System.out.println("El promedio de ingresos para servicio de (Descarga) es de " + PromedioDescarga);
             System.out.println("cantidad de vehiculos de servicio (Carga): " + PromC);
             System.out.println("cantidad de vehiculos de servicio (Descarga) " + PromD);
-            System.out.println("ingresos para servicio de (Carga)" + SumaCarga);
-            System.out.println("ingresos para servicio de (Descarga)" + SumaDescarga);
-            System.out.println("Camiones que solo permanecieron 2 o menos horas" + CantidaHora);
+            System.out.println("ingresos para servicio de (Carga) " + SumaCarga);
+            System.out.println("ingresos para servicio de (Descarga) " + SumaDescarga);
+            System.out.println("Camiones que solo permanecieron 2 o menos horas " + CantidaHora);
+            System.out.println("Valor de costos para servicio de perecederos " + SumaPrecedero);
 
         }
         break;
@@ -286,9 +293,9 @@ public class App {
                         PromedioDescarga = SumaDescarga/PromD;
                     }             
             
-                    if(TablaIngresosAutomatica[i][3] <= 2) {
-                        CantidaHora+=1;
-                    }
+                    if(TablaIngresosAutomatica[i][3] <= 2) {CantidaHora+=1;}
+
+                    if(TablaIngresosAutomatica[i][1] == 1)  { SumaPrecedero += TablaIngresosAutomatica[i][5];}
 
                 
             }
@@ -311,6 +318,7 @@ public class App {
             System.out.println("ingresos para servicio de (Carga) " + SumaCarga);
             System.out.println("ingresos para servicio de (Descarga) " + SumaDescarga);
             System.out.println("Camiones que solo permanecieron 2 o menos horas " + CantidaHora);
+            System.out.println("Valor de costos para servicio de perecederos " + SumaPrecedero);
         break;
 
         }
