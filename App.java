@@ -19,6 +19,16 @@ public class App {
 
         System.out.println("hacerlo de manera: 1/ Manual  2/Automatica");
 
+        double SumaCarga = 0.0;
+        double PromedioCarga = 0.0;
+        double PromC = 0;
+
+        double SumaDescarga = 0.0;
+        double PromedioDescarga = 0.0;
+        double PromD = 0;
+        
+        double CantidaHora = 0;
+
         int Modo = TipoModo.nextInt();
 
         switch(Modo){
@@ -42,7 +52,7 @@ public class App {
 
                     double TipoServicio = IngresoTipoServicio.nextDouble();
 
-                    if (TipoServicio <= 2 && TipoServicio > 0){
+                    if (TipoServicio < 2 && TipoServicio > 0){
                         TablaIngresos[i][0] = TipoServicio;
                     } else {
                         TablaIngresos[i][0] = 2;
@@ -150,6 +160,25 @@ public class App {
 
                     }
                 }
+                
+                if ((int)TablaIngresos[i][0] == 1) {
+
+                            PromC++;
+                            SumaCarga += TablaIngresos[i][5];
+
+                            PromedioCarga = SumaCarga/PromC;
+
+
+                } else if ((int)TablaIngresos[i][0] == 2) {
+                    PromD++;
+                    SumaDescarga += TablaIngresos[i][5];
+
+                    PromedioDescarga = SumaDescarga/PromD;
+                } 
+                
+                if(TablaIngresos[i][3] <= 2) {
+                    CantidaHora+=1;
+                }
                                  
             }
 
@@ -162,6 +191,15 @@ public class App {
                     System.out.print(TablaIngresos[fi][col] + "     ");
                 }
             }
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println("El promedio de ingresos para servicio de (Carga) es de " + PromedioCarga);
+            System.out.println("El promedio de ingresos para servicio de (Descarga) es de " + PromedioDescarga);
+            System.out.println("cantidad de vehiculos de servicio (Carga): " + PromC);
+            System.out.println("cantidad de vehiculos de servicio (Descarga) " + PromD);
+            System.out.println("ingresos para servicio de (Carga)" + SumaCarga);
+            System.out.println("ingresos para servicio de (Descarga)" + SumaDescarga);
+            System.out.println("Camiones que solo permanecieron 2 o menos horas" + CantidaHora);
 
         }
         break;
@@ -174,8 +212,8 @@ public class App {
             TablaIngresosAutomatica = new double[IndiceCamiones][6];
 
             for (int i = 0; IndiceCamiones > i ; i++) {
-                TablaIngresosAutomatica[i][0] = (int)(Math.random()*(2-1)) + 1; //Tipo de servicio
-                TablaIngresosAutomatica[i][1] = (int)(Math.random()*(2-1)) + 1; //Tipo de producto
+                TablaIngresosAutomatica[i][0] = (int)(Math.random()*(3-1)) + 1; //Tipo de servicio
+                TablaIngresosAutomatica[i][1] = (int)(Math.random()*(3-1)) + 1; //Tipo de producto
                 TablaIngresosAutomatica[i][2] = (int)(Math.random()*(40-1)) + 1; //Peso toneladas
                 TablaIngresosAutomatica[i][3] = (int)(Math.random()*(24-1)) + 1; //Tiempo
                 TablaIngresosAutomatica[i][4] = (int)(Math.random()*(20-1)) + 1; //Largo
@@ -233,20 +271,46 @@ public class App {
                     }
                 }
 
+                    if (TablaIngresosAutomatica[i][0] == 1) {
+
+                        PromC+=1;
+                        SumaCarga += TablaIngresosAutomatica[i][5];
+
+                        PromedioCarga = SumaCarga/PromC;
  
+                    }
+                    if (TablaIngresosAutomatica[i][0] == 2){
+                        PromD+=1;
+                        SumaDescarga += TablaIngresosAutomatica[i][5];
+
+                        PromedioDescarga = SumaDescarga/PromD;
+                    }             
+            
+                    if(TablaIngresosAutomatica[i][3] <= 2) {
+                        CantidaHora+=1;
+                    }
+
                 
             }
-            
-            System.out.println("TipoS    TipoP    Peso     Tiempo   Largo    valor");
+            System.out.println("TipoS   TipoP   Peso    Tiempo  Largo   valor");
             
             for(int fi = 0; fi < TablaIngresosAutomatica.length ; fi++) {
                 System.out.println(" ");
                 for(int col = 0; col < TablaIngresosAutomatica[fi].length; col++){
 
-                    System.out.print(TablaIngresosAutomatica[fi][col] + "      ");
+                    System.out.print(TablaIngresosAutomatica[fi][col] + "     ");
                 }
             }
 
+            System.out.println(" ");
+            System.out.println(" ");
+            System.out.println("El promedio de ingresos para servicio de (Carga) es de " + PromedioCarga);
+            System.out.println("El promedio de ingresos para servicio de (Descarga) es de " + PromedioDescarga);
+            System.out.println("cantidad de vehiculos de servicio (Carga): " + PromC);
+            System.out.println("cantidad de vehiculos de servicio (Descarga) " + PromD);
+            System.out.println("ingresos para servicio de (Carga) " + SumaCarga);
+            System.out.println("ingresos para servicio de (Descarga) " + SumaDescarga);
+            System.out.println("Camiones que solo permanecieron 2 o menos horas " + CantidaHora);
         break;
 
         }
